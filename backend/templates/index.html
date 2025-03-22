@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Web Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Flashcard Web Demo</h1>
+    <div>
+        <h2>Upload PDF</h2>
+        <input type="file" id="pdfFile">
+        <button onclick="uploadPDF()">Upload PDF</button>
+    </div>
+    <div id="flashcardContainer" style="display: none;">
+        <h2>Flashcards</h2>
+        <div id="flashcard">
+            <div id="front"></div>
+            <div id="back" style="display: none;"></div>
+        </div>
+        <button onclick="showBack()">Show Back</button>
+        <button onclick="nextCard(true)">Correct</button>
+        <button onclick="nextCard(false)">Incorrect</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
