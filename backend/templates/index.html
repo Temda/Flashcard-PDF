@@ -9,6 +9,12 @@
 <body>
     <h1>Flashcard Web Demo</h1>
     <div>
+        <h2>Create Deck</h2>
+        <input type="text" id="deckName" placeholder="Deck Name">
+        <input type="number" id="numFlashcards" placeholder="Number of Flashcards">
+        <button onclick="createDeck()">Create Deck</button>
+    </div>
+    <div>
         <h2>Upload PDF</h2>
         <input type="file" id="pdfFile">
         <button onclick="uploadPDF()">Upload PDF</button>

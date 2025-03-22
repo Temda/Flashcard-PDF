@@ -1,6 +1,12 @@
 let deck = [];
 let currentCardIndex = 0;
 
+function createDeck() {
+    const deckName = document.getElementById('deckName').value;
+    const numFlashcards = document.getElementById('numFlashcards').value;
+    console.log(`Deck created: ${deckName} with ${numFlashcards} flashcards`);
+}
+
 function uploadPDF() {
     const pdfFile = document.getElementById('pdfFile').files[0];
     const formData = new FormData();
