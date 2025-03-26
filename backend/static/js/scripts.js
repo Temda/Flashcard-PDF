@@ -36,8 +36,7 @@ function uploadPDF() {
     fetch('/upload', {
         method: 'POST',
         body: formData
-    })
-        .then(response => response.json())
+    }).then(response => response.json())
         .then(data => {
             deck = data;
             localStorage.setItem(`deck_${deckName}`, JSON.stringify(deck));
@@ -71,8 +70,8 @@ function showCurrentCard() {
             <p class="text-lg font-medium text-gray-800 text-center">${card.back}</p>
             <div class="absolute bottom-2 right-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Back</div>
         </div>
-    </div>
-`;
+    </div>`;
+    
         flashcard.onclick = () => toggleFlip(index);
         flashcardsList.appendChild(flashcard);
     });
