@@ -2,3 +2,6 @@ Flask
 PyMuPDF
 requests
 openai
+python-dotenv
+google-generativeai
+flask[async]
