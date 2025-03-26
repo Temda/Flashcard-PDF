@@ -27,13 +27,15 @@ async def upload_file():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
-async def generate_flashcards(text, n=4):
+async def generate_flashcards(text, n=10):
     sentences = [s.strip() for s in text.split('\n') if s.strip()]
     flashcards = []
     
-    print(f"Processing: {sentences[:n]}")
-    translation = translate_text(sentences[:n], n)
-    # flashcards.append({"front": sentence, "back": translation})
-    time.sleep(5)
+    for sentence in sentences[:n]:
+        print(f"Processing: {sentence[:n]}")
+        translation = translate_text(sentence)
+        flashcards.append({"front": sentence, "back": translation})
+        time.sleep(10)
 
-    return translation
+    print(flashcards)
+    return flashcards

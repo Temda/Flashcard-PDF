@@ -1,43 +1,25 @@
 import google.generativeai as genai
-import json
-import os
+from app import app
 
-# api_key = os.getenv("GEMINI_API_KEY")
-api_key = "AIzaSyBnPGPNj1Mlu49XHMlDegaUJIjX3Orttl4"
-
-
+api_key = app.config.get('GEMINI_API_KEY')
+# ไม่ต้องใช้งาน API key นะ เพราะว่า ลบทิ้งไปแล้วเป็น key test เฉยๆ อิอิ
 if not api_key:
-    raise ValueError("Gemini API key is not configured.")
+    raise ValueError("Gemini API key is not configured in app.config.")
 
 genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel("gemini-2.5-pro-exp-03-25")
 
-def translate_text(text, n):
+def translate_text(text):
 
-    prompt = "\n".join([
-        f"""
-        Translate the following English word into Thai without explanations.
-        Return the response in JSON format as follows:
-        {{"front": "{word}", "back": "translated Thai word"}}
-        """
-        for word in text[:n]
-    ])
-
-
-    print("prompt", prompt)
     try:
-        response = model.generate_content(prompt)
+        response = model.generate_content(
+            f"Translate the following English text into Thai using only words, without explanations: {text}"
+        )
         
         if hasattr(response, 'text') and response.text:
-            try:
-                translation = json.loads(response.text.strip())
-                print(translation)
-                return translation
-            except json.JSONDecodeError:
-                return {"error": "Failed to parse translation response."}
-        
-        return {"error": "Translation Error: No valid response received."}
-
+            return response.text.strip()
+        return "Translation Error"
+    
     except Exception as e:
         return {"error": f"Translation failed: {str(e)}"}
